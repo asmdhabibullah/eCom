@@ -1,0 +1,21 @@
+### Initial setup
+on:
+  push:
+    branches: ["master", "main", "dev"]
+  pull_request:
+    branches: ["master", "main"]
+
+jobs:
+  Initial-Node-Setup:
+    name: initial setup
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: install node v14
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14
+      - name: Backand package instalation
+        run: cd backend & yarn install
+      - name: Frontend package instalation
+        run: cd web && yarn install
