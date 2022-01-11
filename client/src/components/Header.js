@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Image from 'next/image';
 import { MenuIcon, SearchIcon, ShoppingCartIcon } from '@heroicons/react/outline'
 import { signIn, signOut, useSession } from 'next-auth/client';
@@ -56,10 +57,19 @@ function Header() {
                             </>
                         ) : (
                             <>
-                                <div className="link">
-                                    <p>Returns</p>
-                                    <p className="font-extrabold md:text-sm">& Orders</p>
-                                </div>
+                                {
+                                    session && (
+                                        <Link
+                                            href="/orders/[user]"
+                                            as={`/orders/${session.user.image}`}
+                                        >
+                                            <div className="link">
+                                                <p>Returns</p>
+                                                <p className="font-extrabold md:text-sm">& Orders</p>
+                                            </div>
+                                        </Link>
+                                    )
+                                }
                                 <div onClick={() => router.push('/checkout')} className="relative link flex items-center">
                                     <span className="absolute top-0 right-0 md:right-10 h-4 w-4 bg-yellow-400 text-center rounded-full text-black font-bold">
                                         {items.length}
@@ -95,7 +105,7 @@ function Header() {
                 <p className="link hidden lg:inline-flex">Shopper Toolkit</p>
                 <p className="link hidden lg:inline-flex">Health & Beauty</p>
             </div>
-        </header>
+        </header >
     )
 }
 
