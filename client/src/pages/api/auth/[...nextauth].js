@@ -38,9 +38,9 @@ export default NextAuth({
 
         // If no error and we have user data, return it
         if (res.ok && user) {
-          const { name, email } = user.message;
+          const { id, name, email } = user.message;
 
-          return { name, email };
+          return { image: id, name, email };
         }
         // Return null if user data could not be retrieved
         return null

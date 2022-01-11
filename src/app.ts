@@ -10,6 +10,7 @@ import { signoutUserRouter } from './routers/signout';
 import { signupUserRouter } from './routers/signup';
 import { confirmOrder } from './routers/handleOrder';
 import { getOrders } from './routers/getOrder';
+import { getAmazoneData } from './routers/getAmazonData';
 // import { updateUserRouter } from './routers/updateUser';
 // import { deleteUserRouter } from './routers/delete';
 // import { createBook } from './routers/createBook';
@@ -54,6 +55,9 @@ app.use(signupUserRouter);
 // Order
 app.use(getOrders);
 app.use(confirmOrder);
+
+// Amazone data
+app.use(getAmazoneData);
 
 app.all('*', async (req, res) => {
     console.log("Error handaling for all routers.");
